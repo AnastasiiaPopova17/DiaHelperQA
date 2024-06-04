@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,9 @@ public class BasePage {
     WebDriver driver;
     JavascriptExecutor js;
     static Logger logger = LoggerFactory.getLogger(BasePage.class);
+
+    @FindBy(xpath = "//header//img[@class='css-y56pmg']")
+    WebElement diaHelperLogoHeader;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -39,5 +43,9 @@ public class BasePage {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void clickOnDiaHelperHeaderLogo() {
+        diaHelperLogoHeader.click();
     }
 }

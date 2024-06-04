@@ -23,20 +23,15 @@ public class ApplicationManager {
 
     public WebDriver init() {
         if(browser.equals("chrome")) {
-            // with tools:
-            //driver = new ChromeDriver();
-            // with WebDriverManager
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("--lang=en");
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver(chromeOptions);
         } else if (browser.equals("firefox")) {
-            // driver = new FirefoxDriver();
             FirefoxOptions firefoxOptions = new FirefoxOptions();
             WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver(firefoxOptions);
         } else if (browser.equals("edge")) {
-            //driver  = new EdgeDriver();
             EdgeOptions edgeOptions = new EdgeOptions();
             WebDriverManager.edgedriver().setup();
             driver = new EdgeDriver(edgeOptions);
@@ -45,14 +40,12 @@ public class ApplicationManager {
             throw new IllegalArgumentException("browser entered not correct");
         }
 
-        // common settings for the browser
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
         driver.navigate().to("");
 
         return driver;
-
     }
 
     public void quit() {

@@ -12,14 +12,20 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "")
     WebElement dishBtn;
 
-    @FindBy(xpath = "")
-    WebElement productBtn;
+    @FindBy(xpath = "//a[@class='css-mqpg4z' and contains(text(),'Products')]")
+    WebElement productsBtn;
 
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//a[@class='css-mqpg4z' and contains(text(),'Login')]")
     WebElement loginBtn;
 
-    @FindBy(xpath = "")
-    WebElement registrationBtn;
+    @FindBy(xpath = "//a[@class='css-mqpg4z' and contains(text(),'User')]")
+    WebElement UserBtn;
+
+    @FindBy(xpath = "//button[contains(text(),'LEARN MORE')]")
+    WebElement learnMoreBtn;
+
+    @FindBy(xpath = "//button[contains(text(),'START')]")
+    WebElement startBtn;
 
     public HomePage navigateToHomePage() {
         driver.navigate().to("");
@@ -32,7 +38,7 @@ public class HomePage extends BasePage{
     }
 
     public ProductsPage clickOnProduct() {
-        productBtn.click();
+        productsBtn.click();
         return new ProductsPage(driver);
     }
 
@@ -41,8 +47,18 @@ public class HomePage extends BasePage{
         return new LoginPage(driver);
     }
 
-    public UserPage clickOnRegistrationBtn() {
-        registrationBtn.click();
+    public UserPage clickOnUserBtn() {
+        UserBtn.click();
         return new UserPage(driver);
+    }
+
+    public LearnMorePage clickOnLearnMoreBtn() {
+        learnMoreBtn.click();
+        return new LearnMorePage(driver);
+    }
+
+    public LoginPage clickOnStartBtn() {
+        startBtn.click();
+        return new LoginPage(driver);
     }
 }

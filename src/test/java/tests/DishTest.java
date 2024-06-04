@@ -7,7 +7,6 @@ import pages.HomePage;
 
 public class DishTest extends BaseTest{
     @BeforeClass
-    //click on dishes
     public void preConditions() {
         new HomePage(driver).clickOnDishes();
     }
