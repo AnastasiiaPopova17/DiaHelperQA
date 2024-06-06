@@ -15,11 +15,12 @@ public class UserTest extends BaseTest{
     @Test
     public void fillFormTest() {
         new UserPage(driver)
-                .fillFirstName()
-                .fillSecondName()
-                .fillEmail()
-                .fillPassword()
-                .confirmPassword();
+                .clickOnDownArrow()
+                .fillGlucoseValue()
+                .fillAge()
+                .fillWeight()
+                .fillHeight()
+                .clickOnSaveDataBtn();
     }
 
     @Test
@@ -27,7 +28,6 @@ public class UserTest extends BaseTest{
         new UserPage(driver)
                 .clickOnDiaHelperHeaderLogo();
     }
-
 
     @AfterClass
     public void postConditions() {

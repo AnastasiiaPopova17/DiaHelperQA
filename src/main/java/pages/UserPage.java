@@ -9,38 +9,51 @@ public class UserPage extends BasePage{
         super(driver);
     }
 
-    @FindBy(xpath = )
-    WebElement inputFirstName;
+    @FindBy(xpath = "//button[@class='css-5010ye']")
+    WebElement downArrowElement;
 
-    @FindBy(xpath = )
-    WebElement inputSecondName;
+    @FindBy(xpath = "//input[@name='glucoseLevel']")
+    WebElement inputGlucoseValue;
 
-    @FindBy(xpath = )
-    WebElement inputEmail;
+    @FindBy(xpath = "//input[@name='age']")
+    WebElement inputAge;
 
-    @FindBy(xpath = )
-    WebElement inputPassword;
+    @FindBy(xpath = "//input[@name='weight']" )
+    WebElement inputWeight;
 
-    @FindBy(xpath = )
-    WebElement inputConfirmPassword;
+    @FindBy(xpath = "//input[@name='height']")
+    WebElement inputHeight;
 
-    public UserPage fillFirstName() {
-        clickBase(inputFirstName);
+    @FindBy(xpath = "//button[@class='css-5010ye' and text()='Save Data']")
+    WebElement saveDataBtn;
+
+    public UserPage clickOnDownArrow() {
+        clickBase(downArrowElement);
+        return this;
     }
 
-    public UserPage fillSecondName() {
-        clickBase(inputSecondName);
+    public UserPage fillGlucoseValue() {
+        clickBase(inputGlucoseValue);
+        return this;
     }
 
-    public UserPage fillEmail() {
-        clickBase(inputEmail);
+    public UserPage fillAge() {
+        clickBase(inputAge);
+        return this;
     }
 
-    public UserPage fillPassword() {
-        clickBase(inputPassword);
+    public UserPage fillWeight() {
+        clickBase(inputWeight);
+        return this;
     }
 
-    public UserPage confirmPassword() {
-        clickBase(inputConfirmPassword);
+    public UserPage fillHeight() {
+        clickBase(inputHeight);
+        return this;
+    }
+
+    public UserPage clickOnSaveDataBtn() {
+        clickBase(saveDataBtn);
+        return this;
     }
 }

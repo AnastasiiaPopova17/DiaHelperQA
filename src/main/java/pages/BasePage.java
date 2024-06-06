@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 public class BasePage {
     WebDriver driver;
-    JavascriptExecutor js;
+
     static Logger logger = LoggerFactory.getLogger(BasePage.class);
 
     @FindBy(xpath = "//header//img[@class='css-y56pmg']")
@@ -18,9 +17,7 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        // with chain and @FindBy
         PageFactory.initElements(driver, this);
-        js = (JavascriptExecutor) driver;
     }
 
     public void clickBase(WebElement element) {

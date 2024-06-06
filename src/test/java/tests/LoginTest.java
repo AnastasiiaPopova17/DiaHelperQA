@@ -18,6 +18,28 @@ public class LoginTest extends BaseTest{
         new LoginPage(driver)
                 .clickOnDiaHelperHeaderLogo();
     }
+
+    @Test
+    public void loginFormTest() {
+        new LoginPage(driver)
+                .fillEmailField("gfdgd@hbch.com")
+                .fillPasswordField("Qwer1234!")
+                .clickOnLoginBtn();
+    }
+
+    @Test
+    public void signUpFormTest() {
+        new LoginPage(driver)
+                .fillNameField("Anna")
+                .fillEmailField("gfdgd@hbch.com")
+                .clickOnSignUpBtn();
+    }
+
+    @Test
+    public void forgotPasswordTest() {
+        new LoginPage(driver)
+                .clickOnForgotPassword();
+    }
     @AfterClass
     public void postConditions() {
         new HomePage(driver).navigateToHomePage();
