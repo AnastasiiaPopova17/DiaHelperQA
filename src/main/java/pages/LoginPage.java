@@ -1,17 +1,20 @@
 package pages;
 
-import org.apache.commons.logging.Log;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginPage extends BasePage{
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
-    @FindBy(xpath = "")
-    WebElement inputEmail;
+    @FindBy(xpath = "//input[@name='email']")
+    WebElement inputEmailForLogin;
 
     @FindBy(xpath = "//input[@name='password']")
     WebElement inputPassword;
@@ -19,17 +22,30 @@ public class LoginPage extends BasePage{
     @FindBy(xpath = "//button[text()='Login']")
     WebElement loginBtn;
 
-    @FindBy(xpath = "//input[@name='userName']")
+    @FindBy(xpath = "//input[@name='username']")
     WebElement inputName;
 
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//div[@id='root']/div/main/div/form[2]/div[2]/div/input")
+    WebElement inputEmailForSignUp;
+
+    @FindBy(xpath = "//button[text()='Sign Up']")
     WebElement signUpBtn;
 
     @FindBy(xpath = "//a[text()='Forgot Password?']")
     WebElement forgotPasswordBtn;
 
-    public LoginPage fillEmailField(String email) {
-        typeText(inputEmail, email);
+    @FindBy(xpath = "//p[@class='css-123tk8s']")
+    WebElement successTitle;
+
+    @FindBy(xpath ="//h3[contains(text(),'Enter your current data')]")
+    WebElement successLoginEl;
+
+    private Alert getAlert() {
+        return driver.switchTo().alert();
+    }
+
+    public LoginPage fillEmailFieldForLogin(String email) {
+        typeText(inputEmailForLogin, email);
         return this;
     }
 
@@ -57,4 +73,50 @@ public class LoginPage extends BasePage{
         clickBase(forgotPasswordBtn);
         return this;
     }
+
+    public LoginPage fillEmailFieldForSignUp(String email) {
+        typeText(inputEmailForSignUp, email);
+        return this;
+    }
+
+    public boolean verifySuccessTitle(String str) {
+        String actualRes = getTextBase(successTitle);
+        return isStringsEqual(actualRes,str);
+    }
+
+    public boolean verifySuccessLogin(String str) {
+        String actaulRes = getTextBase(successLoginEl);
+        return isStringsEqual(actaulRes,str);
+    }
+
+    public LoginPage clickOnLogoHeader() {
+        clickBase(diaHelperLogoHeader);
+        return this;
+    }
+
+    public HomePage switchToHomePage(int index) {
+        List<String> windows = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(windows.get(index));
+        return new HomePage(driver);
+    }
+
+    public LoginPage clickAccept(Alert alert) {
+        alert.accept();
+        return this;
+    }
+
+    private String getMessageAlert(Alert alert) {
+        return alert.getText().trim();
+    }
+
+    public boolean verifyTextFromAlert() {
+        Alert alert = getAlert();
+        pause(5000);
+        String expectedRes = "Password reset, email sent!";
+        String actualRes = getMessageAlert(alert);
+        clickAccept(alert);
+        return expectedRes.equals(actualRes);
+    }
+
+
 }

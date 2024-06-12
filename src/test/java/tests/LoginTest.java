@@ -1,11 +1,9 @@
 package tests;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.Assert;
+import org.testng.annotations.*;
 import pages.HomePage;
 import pages.LoginPage;
-import pages.UserPage;
 
 public class LoginTest extends BaseTest{
     @BeforeClass
@@ -14,34 +12,45 @@ public class LoginTest extends BaseTest{
     }
 
     @Test
-    public void diaHelperHeaderTest() {
-        new LoginPage(driver)
-                .clickOnDiaHelperHeaderLogo();
-    }
-
-    @Test
     public void loginFormTest() {
         new LoginPage(driver)
-                .fillEmailField("gfdgd@hbch.com")
-                .fillPasswordField("Qwer1234!")
-                .clickOnLoginBtn();
+                .fillEmailFieldForLogin("rafan75039@kernuo.com")
+                .fillPasswordField("rJh3c$6$")
+                .clickOnLoginBtn()
+                .verifySuccessLogin("Enter your current data");
     }
-
     @Test
     public void signUpFormTest() {
         new LoginPage(driver)
-                .fillNameField("Anna")
-                .fillEmailField("gfdgd@hbch.com")
-                .clickOnSignUpBtn();
+                .fillNameField("Max")
+                .fillEmailFieldForSignUp("rafan75039@kernuo.com")
+                .clickOnSignUpBtn()
+                .verifySuccessTitle("We sent the password to your email address");
     }
-
     @Test
     public void forgotPasswordTest() {
-        new LoginPage(driver)
-                .clickOnForgotPassword();
+      Assert.assertTrue(new LoginPage(driver)
+               .clickOnForgotPassword()
+               .verifyTextFromAlert());
+
     }
+    @Test
+    public void diaHelperHeaderLogoTest() {
+        Assert.assertTrue(new LoginPage(driver)
+                .clickOnLogoHeader()
+                .switchToHomePage(0)
+                .verifyHomePageOpen("Welcome to DiaHelper App!"));
+    }
+
     @AfterClass
     public void postConditions() {
         new HomePage(driver).navigateToHomePage();
     }
+
+//    @AfterMethod
+//    public void afterMethodPostConditions() {
+//        new HomePage(driver)
+//                .closeCurrentTab()
+//                .switchToLoginPage(0);
+//    }
 }

@@ -17,6 +17,4 @@ public class HomeTest extends BaseTest{
                 .clickOnStartBtn();
     }
 
-
-
 }
