@@ -20,10 +20,10 @@ public class ProductsTest extends BaseTest{
                 .clickOnDiaHelperHeaderLogo();
     }
     @Test
-    public void searchBtn() {
-        Assert.assertTrue(new ProductsPage(driver)
-                .clickOnSearchProduct("milk")
-                .verifyListOfProducts());
+    public void searchProduct() {
+       Assert.assertTrue(new ProductsPage(driver)
+               .clickOnSearchProduct("milk")
+               .verifyDisplayProduct("Milk"));
     }
     @AfterClass
     public void postConditions() {
