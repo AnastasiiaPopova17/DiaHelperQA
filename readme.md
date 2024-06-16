@@ -69,7 +69,7 @@ The following types of testing have been carried out in this project:
 
 ## Testing Reports
 
-Test reports are available in Testlink reports, as well as in Postman and Jenkins. All documentation is available on ...
+Test reports are available in Testlink reports, as well as in Postman and Jenkins. All documentation is available on https://drive.google.com/drive/u/1/my-drive
 
 ## Recommendations
 
