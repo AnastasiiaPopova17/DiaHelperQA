@@ -8,13 +8,15 @@ public class HomeTest extends BaseTest{
     @Test
     public void learnMoreTest() {
         new HomePage(driver)
-                .clickOnLearnMoreBtn();
+                .clickOnLearnMoreBtn()
+                .isTextDisplayed("Key facts about diabetes");
     }
 
     @Test
     public void startTest() {
         new HomePage(driver)
-                .clickOnStartBtn();
+                .clickOnStartBtn()
+                .isLoginPageOpens("Login");
     }
 
 }

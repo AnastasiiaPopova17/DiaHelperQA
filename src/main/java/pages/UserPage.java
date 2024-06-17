@@ -9,7 +9,7 @@ public class UserPage extends BasePage{
         super(driver);
     }
 
-    @FindBy(xpath = "//button[@class='css-5010ye']")
+    @FindBy(css = ".fa-chevron-down")
     WebElement downArrowElement;
 
     @FindBy(xpath = "//input[@name='glucoseLevel']")
@@ -24,36 +24,47 @@ public class UserPage extends BasePage{
     @FindBy(xpath = "//input[@name='height']")
     WebElement inputHeight;
 
-    @FindBy(xpath = "//button[@class='css-5010ye' and text()='Save Data']")
+    @FindBy(xpath = "//button[text()='Update Data']")
     WebElement saveDataBtn;
+
+    @FindBy(xpath = "//p[text()='Your max calories: ']")
+    WebElement filledFormVerifyElement;
 
     public UserPage clickOnDownArrow() {
         clickBase(downArrowElement);
         return this;
     }
 
-    public UserPage fillGlucoseValue() {
-        clickBase(inputGlucoseValue);
+    public UserPage fillGlucoseValue(String value) {
+        typeText(inputGlucoseValue,value);
         return this;
     }
 
-    public UserPage fillAge() {
-        clickBase(inputAge);
+    public UserPage fillAge(String age) {
+        typeText(inputAge,age);
         return this;
     }
 
-    public UserPage fillWeight() {
-        clickBase(inputWeight);
+    public UserPage fillWeight(String weight) {
+        typeText(inputWeight,weight);
         return this;
     }
 
-    public UserPage fillHeight() {
-        clickBase(inputHeight);
+    public UserPage fillHeight(String height) {
+        typeText(inputHeight,height);
         return this;
     }
 
     public UserPage clickOnSaveDataBtn() {
         clickBase(saveDataBtn);
         return this;
+    }
+
+    public boolean isFormFilled(String text) {
+        String actualRes = getTextBase(filledFormVerifyElement);
+        if (actualRes.equals(text)){
+            return false;
+        }
+        return true;
     }
 }
