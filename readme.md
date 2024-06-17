@@ -60,7 +60,7 @@ The following types of testing have been carried out in this project:
 
 ## Project Structure
 
-- `src/main/java`: Project source code (if applicable)
+- `src/main/java`: Project source code 
 - `src/test/java`: Project Tests
 - `tests`: Test cases
 - `utils`: Auxiliary utilities and methods
