@@ -17,7 +17,6 @@ public class UserTest extends BaseTest{
                 .login();
     }
 
-
     @Test
     public void fillFormTest() {
         Assert.

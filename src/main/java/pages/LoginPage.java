@@ -64,12 +64,9 @@ public class LoginPage extends BasePage{
     @FindBy(xpath = "//p[text()='Wrong type of name']")
     WebElement wrongTypeNameEl;
 
-    @FindBy(xpath = "")
+    @FindBy(css = ".fa-right-from-bracket")
     WebElement logoutBtn;
 
-    private Alert getAlert() {
-        return driver.switchTo().alert();
-    }
 
     public LoginPage fillEmailFieldForLogin(String email) {
         typeText(inputEmailForLogin, email);
@@ -201,5 +198,10 @@ public class LoginPage extends BasePage{
     public HomePage clickLogoutBtn() {
         clickBase(logoutBtn);
         return new HomePage(driver);
+    }
+
+    public LoginPage navigateToLoginPage() {
+        driver.navigate().to("https://diahelper-cqnwp.ondigitalocean.app/#/login");
+        return this;
     }
 }
