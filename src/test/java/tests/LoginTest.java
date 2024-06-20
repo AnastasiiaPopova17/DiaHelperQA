@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.HomePage;
 import pages.LoginPage;
+import utils.DataProviders;
 
 public class LoginTest extends BaseTest{
     @BeforeClass
@@ -14,19 +15,11 @@ public class LoginTest extends BaseTest{
     public void postConditions() {
         new HomePage(driver).navigateToHomePage();
     }
-    boolean flag = false;
 
-//    @AfterMethod
-//    public void methodPostCondition() {
-//        if (flag) {
-//            new LoginPage(driver).clickLogoutBtn();
-//            flag = false;
-//        }
-//        new HomePage(driver).navigateToHomePage();
-//        }
-
-
-
+    @AfterMethod
+    public void methodPostCondition() {
+        new HomePage(driver).navigateToHomePage().clickLogin();
+    }
     @Test
     public void positiveLoginFormTest() {
         new LoginPage(driver)
@@ -34,9 +27,7 @@ public class LoginTest extends BaseTest{
                 .fillPasswordField("hFeiM6#Z")
                 .clickOnLoginBtn()
                 .verifySuccessLogin("Enter your current data");
-//        flag = true;
     }
-
     @Test
     public void negativeLoginTestWithoutEmail() {
         new LoginPage(driver)
@@ -64,11 +55,11 @@ public class LoginTest extends BaseTest{
                 .verifyTitleInvalidPassword("Invalid email or password");
     }
     @Test
-    public void positiveSignUpFormTest() {
+    public void positiveSignUpTest() {
         new LoginPage(driver)
                 .clickOnSignUpFormBtn()
                 .fillNameField("Max")
-                .fillEmailFieldForSignUp("rafan80965@kernuo.com")
+                .fillEmailFieldForSignUp("rafan80965@krnuo.com")
                 .clickOnSignUpBtn()
                 .verifySuccessTitle("We sent the password to your email address");
     }
@@ -118,11 +109,13 @@ public class LoginTest extends BaseTest{
                 .verifyHomePageOpen("Welcome to DiaHelper App!"));
     }
 
-
-//    @AfterMethod
-//    public void afterMethodPostConditions() {
-//        new HomePage(driver)
-//                .closeCurrentTab()
-//                .switchToLoginPage(0);
-//    }
+    @Test(dataProvider = "addNewUser", dataProviderClass = DataProviders.class)
+    public void positiveSignUpTestDataProvider(String name, String email) {
+        new LoginPage(driver)
+                .clickOnSignUpFormBtn()
+                .fillNameField(name)
+                .fillEmailFieldForSignUp(email)
+                .clickOnSignUpBtn()
+                .verifySuccessTitle("We sent the password to your email address");
+    }
 }
