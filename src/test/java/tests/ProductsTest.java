@@ -14,11 +14,7 @@ public class ProductsTest extends BaseTest{
         new HomePage(driver).clickOnProduct();
     }
 
-    @Test
-    public void diaHelperHeaderTest() {
-        new ProductsPage(driver)
-                .clickOnDiaHelperHeaderLogo();
-    }
+
     @Test
     public void searchProduct() {
        Assert.assertTrue(new ProductsPage(driver)
