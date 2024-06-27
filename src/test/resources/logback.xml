@@ -11,7 +11,7 @@
 
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>src/logs/log-${bySecond}.log</file>
-        <maxHistory>5</maxHistory>
+        <maxHistory>10</maxHistory>
         <append>true</append>
         <immediateFlush>true</immediateFlush>
         <encoder>
@@ -20,7 +20,7 @@
     </appender>
 
     <root level="info">
-<!--        <appender-ref ref="STDOUT" />-->
+        <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
     </root>
 </configuration>

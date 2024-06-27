@@ -68,7 +68,7 @@ public class LoginTest extends BaseTest{
         new LoginPage(driver)
                 .clickOnSignUpFormBtn()
                 .fillNameField("")
-                .fillEmailFieldForSignUp("fhgsdg@hbh")
+                .fillEmailFieldForSignUp("fhdhjfg@hbh")
                 .clickOnSignUpBtn()
                 .verifyTitleRequiredName("Field name is required");
     }
